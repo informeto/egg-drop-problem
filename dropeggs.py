@@ -24,7 +24,7 @@ def initMatrix():
 
     """for other cases, fMatrix[d][b] = 1  //one drop required to test a floor
                                         + fMatrix[d - 1][b]  //if the egg doesnt break, we can test floors above current with d-1 drops and b breaks left
-                                        + fMatrix[d - 1][b - 1] //if the egg breaks, we can test floors below current with d-1 drops and b breaks left
+                                        + fMatrix[d - 1][b - 1] //if the egg breaks, we can test floors below current with d-1 drops and b-1 breaks left
                                         """
     id = 2
     while(id < 100001):
