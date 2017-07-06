@@ -37,7 +37,7 @@ def initMatrix():
                 else:
                     fMatrix[id][ib] = 1 + fMatrix[id - 1][ib] + fMatrix[id - 1][ib - 1]
 
-                    if fMatrix[id][ib] < 0 or fMatrix[id][ib] >= maxFval:
+                    if fMatrix[id][ib] >= maxFval:
                         fMatrix[id][ib] = -1
             else:
                 fMatrix[id][ib] = fMatrix[id][id];
