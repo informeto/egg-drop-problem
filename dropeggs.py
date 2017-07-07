@@ -98,13 +98,17 @@ if not filename:
      print('Please specify a input file')
      exit(0)
 
-infile = file(filename, 'r')
+
+try:
+    infile = file(filename, 'r')
+    T = int(infile.readline().strip())
+except Exception as e:
+    print('The file ' + filename + ' couldnt be loaded for test case data, please check')
+    exit(0)
 
 
 fMatrix = [[0 for x in range(33)] for y in range(100001)] 
 initMatrix()
-
-T = int(infile.readline().strip())
 
 for caseNum in range(1, T+1):
     try:
