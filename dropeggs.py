@@ -2,7 +2,7 @@ import sys
 
 
 #initialize a matrix with max floors Fmax that can be covered with D drops and B breaks,
-# only calculating till B=32 and D= 100000(approximated for Fmax(D,2)  -1,  10000 < max-possible-D >100000, to optimize memory usage) because Fmax = -1 for all cases above
+# only calculating till B=32 and D= 100000(approximated for Fmax(D,2)= -1,  10000 < max-possible-D >100000, to optimize memory usage) because Fmax = -1 for all cases above
 def initMatrix():
 
     #only one floor can be guaranteed to be solvable if only one drop is allowed
@@ -92,21 +92,31 @@ def Bmin(F, D):
     return bMin
     
 
+filename =  sys.argv[1] if len(sys.argv) > 1 else  None
+
+if not filename:
+     print('Please specify a input file')
+     exit(0)
+
+infile = file(filename, 'r')
+
 
 fMatrix = [[0 for x in range(33)] for y in range(100001)] 
 initMatrix()
 
-
-filename = sys.argv[1]
-infile = file(filename, 'r')
 T = int(infile.readline().strip())
 
 for caseNum in range(1, T+1):
-    line = infile.readline().strip()
-    f, d, b = map(int, line.split())
+    try:
+      line = infile.readline().strip()
+      f, d, b = map(int, line.split())
 
-    fD = Fmax(d, b)
-    dMin = Dmin(f,b)
-    bMin = Bmin(f,d)
+      fD = Fmax(d, b)
+      dMin = Dmin(f,b)
+      bMin = Bmin(f,d)
+      print "Case #%d: %d %d %d" % (caseNum, fD, dMin, bMin)
+      
+    except Exception as ex:
+       print("Case #%d:error occurred for the supplied parameters, please check your inputs"%(caseNum))
+
     
-    print "Case #%d: %d %d %d" % (caseNum, fD, dMin, bMin)
